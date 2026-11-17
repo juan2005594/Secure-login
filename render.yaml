@@ -1,0 +1,46 @@
+services:
+  - type: web
+    name: inbot-system-web
+    runtime: docker
+    plan: free
+    region: oregon
+    branch: cms-desplegable
+    dockerfilePath: Dockerfile
+    dockerContext: .
+    healthCheckPath: /up
+    envVars:
+      - key: APP_NAME
+        value: INBOT_SYSTEM
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      - key: APP_KEY
+        value: "base64:c5L2U+9eD7T3q1b8Z8xG0nI2kV4pM6rS7wY1zA3bC5E="
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DATABASE_URL
+        fromDatabase:
+          name: inbot-db
+          property: connectionString
+      - key: DB_URL
+        fromDatabase:
+          name: inbot-db
+          property: connectionString
+      - key: FILESYSTEM_DISK
+        value: public
+      - key: SESSION_DRIVER
+        value: database
+      - key: QUEUE_CONNECTION
+        value: sync
+      - key: CACHE_STORE
+        value: database
+      - key: RUN_SEEDERS
+        value: "true"
+
+databases:
+  - name: inbot-db
+    plan: free
+    databaseName: inbot_system
+    user: inbot_user
+    region: oregon
