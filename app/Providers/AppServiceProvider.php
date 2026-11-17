@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -25,6 +26,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Forzar HTTPS en producción para evitar bloqueo de formularios mixtos (HTTP vs HTTPS)
+        if (app()->environment('production') || env('APP_ENV') === 'production' || str_contains(env('APP_URL', ''), 'https://')) {
+            URL::forceScheme('https');
+        }
+
         \Illuminate\Support\Facades\Gate::policy(\App\Models\Producto::class, \App\Policies\ProductoPolicy::class);
 
         \Illuminate\Database\Eloquent\Model::preventLazyLoading(! $this->app->isProduction());

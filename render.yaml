@@ -11,6 +11,10 @@ services:
     envVars:
       - key: APP_NAME
         value: INBOT_SYSTEM
+      - key: APP_URL
+        value: https://inbot-system-web.onrender.com
+      - key: ASSET_URL
+        value: https://inbot-system-web.onrender.com
       - key: APP_ENV
         value: production
       - key: APP_DEBUG
