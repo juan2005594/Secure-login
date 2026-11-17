@@ -19,7 +19,17 @@ class InbotSystemSeeder extends Seeder
     public function run(): void
     {
         // 1. Usuarios con roles (Admin, Bodeguero, Vendedor)
-        $admin = User::firstOrCreate(
+        $juanDavid = User::updateOrCreate(
+            ['email' => 'juandavid@gmail.com'],
+            [
+                'name'     => 'Juan David',
+                'password' => Hash::make('Segura123!'),
+                'role'     => 'admin',
+                'phone'    => '3001234567',
+            ]
+        );
+
+        $admin = User::updateOrCreate(
             ['email' => 'admin@inbot.com'],
             [
                 'name'     => 'Administrador General',

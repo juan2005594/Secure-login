@@ -104,7 +104,6 @@
                             <select class="form-select fw-semibold" id="role" name="role" required onchange="actualizarInfoRol(this.value)">
                                 <option value="vendedor" {{ old('role') == 'vendedor' ? 'selected' : '' }}>Vendedor (Caja / Facturación de Ventas)</option>
                                 <option value="bodeguero" {{ old('role') == 'bodeguero' ? 'selected' : '' }}>Bodeguero (Gestión de Inventario y Compras)</option>
-                                <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Administrador (Control Total del Sistema)</option>
                             </select>
                             
                             <div id="rolInfoBadge" class="mt-2 p-2 rounded-3 small border bg-success-subtle text-success-emphasis">
@@ -169,9 +168,6 @@
                 } else if (rol === 'bodeguero') {
                     badge.className += 'bg-primary-subtle text-primary-emphasis border-primary-subtle';
                     texto.innerHTML = '<b>Bodeguero:</b> Crear y editar categorías, proveedores y productos; registrar facturas de compra y consultar reportes de inventario. No factura ventas.';
-                } else if (rol === 'admin') {
-                    badge.className += 'bg-danger-subtle text-danger-emphasis border-danger-subtle';
-                    texto.innerHTML = '<b>Administrador:</b> Acceso total a todas las operaciones, gestión de usuarios y roles, reportes contables, inventario, compras y ventas.';
                 }
             }
 

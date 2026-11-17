@@ -27,7 +27,7 @@ class LoginController extends Controller
             'name'     => ['required', 'string', 'max:255'],
             'email'    => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'min:8', 'confirmed'],
-            'role'     => ['required', 'string', 'in:admin,bodeguero,vendedor,Administrador,Bodeguero,Vendedor'],
+            'role'     => ['required', 'string', 'in:bodeguero,vendedor,Bodeguero,Vendedor'],
             'phone'    => ['nullable', 'string', 'max:30'],
         ]);
 
